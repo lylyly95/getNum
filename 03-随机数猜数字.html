@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>猜数字小游戏</title>
+        <script>
+            function getRandom(min, max) {
+                min = Math.floor(min);
+                max = Math.floor(max);
+                return Math.floor(Math.random() * (max - min + 1)) + min;
+            }
+            function addZero(num, l) {
+                var nnum = num;
+                if (l > 1) {
+                    for (let i = 1; i < l; i++) {
+                        if (num < Math.pow(10, i)) {
+                            nnum = "0" + nnum;
+                        }
+                    }
+                }
+                return nnum;
+            }
+            var random = getRandom(1, 100);
+            console.log(random);
+            while (true) {
+                // 死循环
+                var num =
+                    prompt(
+                        "输入一个1~100之间的整数（不是整数自动向下取整）："
+                    ) - 0;
+                num = Math.floor(num);
+                if (num > 100 || num < 1) {
+                    alert("输入数字不符合规定");
+                    continue;
+                }
+                if (num > random) {
+                    alert("你猜的是" + addZero(num, 3) + "，猜大了");
+                } else if (num < random) {
+                    alert("你猜的是" + addZero(num, 3) + "，猜小了");
+                } else if (num == random) {
+                    alert("你猜的是" + addZero(num, 3) + "，猜对了");
+                    break;
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <p>猜数字小游戏</p>
+    </body>
+</html>
